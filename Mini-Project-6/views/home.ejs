@@ -1,0 +1,168 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Chats</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f2f6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .create-btn {
+            display: block;
+            margin: 0 auto 30px;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 8px;
+            background-color: #222;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .create-btn:hover {
+            background-color: #444;
+        }
+
+        .chat {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .chat p {
+            margin: 8px 0;
+            color: #444;
+        }
+
+        .from {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .to {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .message {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background-color: #f5f6fa;
+            border-radius: 8px;
+            color: #222;
+            font-size: 16px;
+        }
+
+        .label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+        }
+
+        .edit-btn {
+            margin-top: 15px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 7px;
+            background-color: #555;
+            color: white;
+            cursor: pointer;
+        }
+
+        .edit-btn:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>💬 All Chats</h2>
+
+        <!-- Create Chat -->
+        <form action="/create" method="get">
+            <button class="create-btn" type="submit">
+                + Create Chat
+            </button>
+        </form>
+
+
+        <!-- All Chats -->
+
+        <% for (const chat of allchats) { %>
+
+            <div class="chat">
+
+                <p>
+                    <span class="label">From</span><br>
+                    <span class="from">
+                        <%= chat.from %>
+                    </span>
+                </p>
+
+                <p>
+                    <span class="label">To</span><br>
+                    <span class="to">
+                        <%= chat.to %>
+                    </span>
+                </p>
+
+                <div class="message">
+                    <span class="label">Message</span><br>
+                    <%= chat.msg %>
+                </div>
+
+
+                <!-- Edit Chat -->
+
+                <form action="/<%= chat._id %>/edit" method="get">
+
+                    <button class="edit-btn" type="submit">
+                        Edit
+                    </button>
+
+                </form>
+ <br>
+
+                <form action="/<%= chat._id %>?_method=DELETE" method="POST">
+    <button type="submit">Delete</button>
+</form>
+
+            </div>
+
+        <% } %>
+
+    </div>
+
+</body>
+
+</html>

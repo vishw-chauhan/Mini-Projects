@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Users</title>
+
+    <style>
+
+        table {
+            border-collapse: collapse;
+            width: 90%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        button {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <h1>All Users Details</h1>
+
+    <br>
+
+    <a href="/">
+        <button>Home</button>
+    </a>
+
+    <br><br>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Username</th>
+
+            <th>Email</th>
+
+            <th>Password</th>
+
+            <th>Action</th>
+
+        </tr>
+
+
+        <% for (let us of users) { %>
+
+            <tr>
+
+                <td>
+                    <%= us.id %>
+                </td>
+
+                <td>
+                    <%= us.username %>
+                </td>
+
+                <td>
+                    <%= us.email %>
+                </td>
+
+                <td>
+                    <%= us.password %>
+                </td>
+
+                <td>
+
+                    <a href="/show/<%= us.id %>/edit">
+
+                        <button>
+                            Edit Username
+                        </button>
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+        <% } %>
+
+    </table>
+
+</body>
+
+</html>
